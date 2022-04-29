@@ -1,5 +1,5 @@
 // Environment available
-/*
+
 def ENVIRONMENT_LIST = ['cus','prd'] // https://github.com/hove-io/ansible/tree/master/inventories/projects/analytics/
 
 
@@ -29,7 +29,7 @@ pipeline {
         }
     }
 }
-*/
+/*
 pipeline {
     agent any
     parameters {
@@ -54,4 +54,4 @@ pipeline {
             }
         }
     }
-}
+}*/
