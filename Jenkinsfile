@@ -43,6 +43,7 @@ pipeline {
             */2 * * * * %GREETING=Hola;PLANET=Pluto
             */3 * * * * %PLANET=Mars
         ''')
+    }
     stages {
         stage('Example') {
             when {
@@ -54,4 +55,4 @@ pipeline {
         }
     }
 }
-}
+
