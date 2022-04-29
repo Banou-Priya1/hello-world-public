@@ -37,7 +37,7 @@ pipeline {
       string(name: 'GREETING', defaultValue: 'Hello', description: 'How shall we greet?')
     }
     triggers {
-        cron('''
+        parameterizedCron('''
             # leave spaces where you want them around the parameters. They'll be trimmed.
             # we let the build run with the default name
             */2 * * * * %GREETING=Hola;PLANET=Pluto
@@ -46,11 +46,9 @@ pipeline {
     }
     stages {
         stage('Example') {
-            when {
-                triggeredBy 'ParameterizedTimerTriggerCause'
-            }
             steps {
-                echo 'This build was triggered by a `parameterizedCron` trigger'
+                echo "${params.GREETING} ${params.PLANET}"
+                script { currentBuild.description = "${params.GREETING} ${params.PLANET}" }
             }
         }
     }
