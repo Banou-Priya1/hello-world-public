@@ -12,14 +12,13 @@ pipeline {
     
     triggers {
         parameterizedCron('''
-            25 15 * * * %ENVIRONMENT=cus
+            34 16 * * * %ENVIRONMENT=cus
         ''')
     }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                echo $ENVIRONMENT
             }
         }
         
