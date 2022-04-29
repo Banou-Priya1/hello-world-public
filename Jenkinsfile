@@ -43,12 +43,13 @@ pipeline {
             */2 * * * * %GREETING=Hola;PLANET=Pluto
             */3 * * * * %PLANET=Mars
         ''')
-    }
     stages {
         stage('Example') {
+            when {
+                triggeredBy 'ParameterizedTimerTriggerCause'
+            }
             steps {
-                echo "${params.GREETING} ${params.PLANET}"
-                script { currentBuild.description = "${params.GREETING} ${params.PLANET}" }
+                echo 'This build was triggered by a `parameterizedCron` trigger'
             }
         }
     }
