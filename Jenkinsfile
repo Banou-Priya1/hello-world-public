@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    triggers {
+        parameterizedCron('''
+            30 15 * * * 
+        ''')
+    }
     stages {
         stage('Hello') {
             steps {
