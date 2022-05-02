@@ -13,18 +13,21 @@ pipeline {
     triggers {
         parameterizedCron('''
             */2 13 * * * %ENVIRONMENT=cus
+            */5 13 * * * %ENVIRONMENT=prd
         ''')
     }
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                echo "${params.ENVIRONMENT}"
             }
         }
         
         stage('Hello2') {
             steps {
                 echo 'Hello World'
+                echo "${params.ENVIRONMENT}"
             }
         }
     }
