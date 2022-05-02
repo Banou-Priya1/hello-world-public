@@ -1,23 +1,25 @@
 // Environment available
 
 def ENVIRONMENT_LIST = ['cus','prd'] // https://github.com/hove-io/ansible/tree/master/inventories/projects/analytics/
-
+def LOAD_LIST = ['stat','referential','disruption','subscription']
 
 pipeline {
     agent any
     
     parameters {
         choice(name: 'ENVIRONMENT', choices: ENVIRONMENT_LIST, description: 'Env where the playbook will be run')
+        choice(name: 'LOAD', choices: LOAD_LIST, description: 'Choose load value')
+        
     }
     
     triggers {
         parameterizedCron('''
-            15 17 * * * %ENVIRONMENT=cus
-            17 17 * * * %ENVIRONMENT=prd
-            14 17 * * * %ENVIRONMENT=cus
-            18 17 * * * %ENVIRONMENT=prd
-            21 17 * * * %ENVIRONMENT=cus
-            25 17 * * * %ENVIRONMENT=prd
+            26 17 * * * %ENVIRONMENT=cus %LOAD=stat
+            18 17 * * * %ENVIRONMENT=prd %LOAD=referential
+            30 17 * * * %ENVIRONMENT=cus %LOAD=referential
+            31 17 * * * %ENVIRONMENT=prd %LOAD=stat
+            33 17 * * * %ENVIRONMENT=cus %LOAD=stat
+            35 17 * * * %ENVIRONMENT=prd %LOAD=referential
         ''')
     }
     stages {
