@@ -12,7 +12,7 @@ pipeline {
     
     triggers {
         parameterizedCron('''
-            H/2 16 * * * %ENVIRONMENT=cus
+            H(45-46) 16 * * * %ENVIRONMENT=cus
             H/5 16 * * * %ENVIRONMENT=prd
         ''')
     }
